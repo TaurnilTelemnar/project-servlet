@@ -3,9 +3,6 @@ package com.tictactoe.controller;
 import com.tictactoe.entity.Cell;
 import com.tictactoe.entity.Sign;
 import com.tictactoe.service.FieldService;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,7 +14,7 @@ import java.io.IOException;
 public class LogicController extends BaseController {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession currentSession = req.getSession();
         FieldService service = extractService(currentSession);
         if(isGameStopped(currentSession)){

@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface Repository {
-    public Optional<Cell> getCell(int id);
-    public Map<Integer, Cell> getField();
-    public void updateCell(Cell cell, int id);
-    public void init();
+    Optional<Cell> getCell(int id);
+    Map<Integer, Cell> getField();
+    void updateCell(Cell cell, int id);
+    void init();
 }
