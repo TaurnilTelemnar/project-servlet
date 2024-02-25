@@ -1,5 +1,7 @@
 package com.tictactoe;
 
+import com.tictactoe.entity.Sign;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

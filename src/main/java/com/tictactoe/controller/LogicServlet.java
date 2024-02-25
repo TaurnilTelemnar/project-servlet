@@ -1,6 +1,10 @@
-package com.tictactoe;
+package com.tictactoe.controller;
 
 
+import com.tictactoe.Field;
+import com.tictactoe.entity.Sign;
+import com.tictactoe.repository.FieldRepository;
+import com.tictactoe.service.FieldService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
