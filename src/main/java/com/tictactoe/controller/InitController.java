@@ -1,6 +1,6 @@
 package com.tictactoe.controller;
 
-import com.tictactoe.repository.FieldRepository;
+import com.tictactoe.repository.CellRepository;
 import com.tictactoe.service.FieldService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
@@ -15,13 +15,13 @@ import java.io.IOException;
 
 @WebServlet("/start")
 public class InitController extends HttpServlet {
-    private String pathIndex = "/index.jsp";
+    private final String pathIndex = "/index.jsp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession currentSession = req.getSession(true);
-        FieldRepository fieldRepository = new FieldRepository(9);
-        FieldService fieldService = new FieldService(fieldRepository);
+        CellRepository cellRepository = new CellRepository();
+        FieldService fieldService = new FieldService(cellRepository);
         currentSession.setAttribute("service", fieldService);
         ServletContext servletContext = super.getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(pathIndex);

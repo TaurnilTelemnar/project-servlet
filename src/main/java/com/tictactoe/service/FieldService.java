@@ -2,7 +2,7 @@ package com.tictactoe.service;
 
 import com.tictactoe.entity.Cell;
 import com.tictactoe.entity.Sign;
-import com.tictactoe.repository.FieldRepository;
+import com.tictactoe.repository.CellRepository;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
@@ -11,19 +11,19 @@ import java.util.Map;
 
 @AllArgsConstructor
 public class FieldService {
-    private final FieldRepository fieldRepository;
+    private final CellRepository cellRepository;
     public void updateCell(Cell cell, int id){
-        fieldRepository.updateCell(cell, id);
+        cellRepository.updateCell(cell, id);
     }
     public Cell getCell(int id){
-        return fieldRepository.getCell(id).orElseThrow();
+        return cellRepository.getCell(id).orElseThrow();
     }
     public Map<Integer, Cell> getField(){
-        return fieldRepository.getField();
+        return cellRepository.getField();
     }
     // проверка пустой ячейки
     public boolean isCellEmpty(int id){
-        Cell cell = fieldRepository.getCell(id).orElseThrow();
+        Cell cell = cellRepository.getCell(id).orElseThrow();
         return cell.getSign().equals(Sign.EMPTY);
     }
     //опеределяет наличие свободных ячеек
@@ -53,10 +53,9 @@ public class FieldService {
     public boolean isGameHasWinner(){
         return whoIsWin() != null;
     }
-    //ToDO вычислить зависимость количества допустимых линий от количества ячеек
     private List<Line> getAllLines(){
         List<Line> lines = new ArrayList<>();
-        Map<Integer, Cell> field = fieldRepository.getField();
+        Map<Integer, Cell> field = cellRepository.getField();
         lines.add(new Line(field.get(0), field.get(1), field.get(2)));
         lines.add(new Line(field.get(3), field.get(4), field.get(5)));
         lines.add(new Line(field.get(6), field.get(7), field.get(8)));

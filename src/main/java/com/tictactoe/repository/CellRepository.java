@@ -5,12 +5,12 @@ import com.tictactoe.entity.Sign;
 
 import java.util.*;
 
-public class FieldRepository implements Repository{
+public class CellRepository implements Repository{
 
     private Map<Integer, Cell> field;
 
-    public FieldRepository(int size){
-        init(size);
+    public CellRepository(){
+        init();
     }
     @Override
     public Optional<Cell> getCell(int id) {
@@ -23,15 +23,14 @@ public class FieldRepository implements Repository{
     }
 
     @Override
-    public boolean updateCell(Cell cell, int id) {
+    public void updateCell(Cell cell, int id) {
         field.put(id, cell);
-        return true;
     }
 
     @Override
-    public void init(int size) {
+    public void init() {
         field = new HashMap<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < 9; i++) {
             Cell emptyCell = Cell.builder()
                     .id(i)
                     .sign(Sign.EMPTY)
