@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-//@WebServlet("/logic")
+@WebServlet("/logic")
 public class LogicController extends HttpServlet {
     private final String pathIndex = "/index.jsp";
 

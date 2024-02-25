@@ -13,19 +13,19 @@
 <h1>Tic-Tac-Toe</h1>
 <table>
     <tr>
-        <td onclick="window.location='/logic?click=0'">${sessionScope.service.getCell(0).getSign()}</td>
-        <td onclick="window.location='/logic?click=1'">${sessionScope.service.getCell(1).getSign()}</td>
-        <td onclick="window.location='/logic?click=2'">${sessionScope.service.getCell(2).getSign()}</td>
+        <td onclick="window.location='/logic?click=0'">${sessionScope.service.getCell(0).sign.getSign()}</td>
+        <td onclick="window.location='/logic?click=1'">${sessionScope.service.getCell(1).sign.getSign()}</td>
+        <td onclick="window.location='/logic?click=2'">${sessionScope.service.getCell(2).sign.getSign()}</td>
     </tr>
     <tr>
-        <td onclick="window.location='/logic?click=3'">${sessionScope.service.getCell(3).getSign()}</td>
-        <td onclick="window.location='/logic?click=4'">${sessionScope.service.getCell(4).getSign()}</td>
-        <td onclick="window.location='/logic?click=5'">${sessionScope.service.getCell(5).getSign()}</td>
+        <td onclick="window.location='/logic?click=3'">${sessionScope.service.getCell(3).sign.getSign()}</td>
+        <td onclick="window.location='/logic?click=4'">${sessionScope.service.getCell(4).sign.getSign()}</td>
+        <td onclick="window.location='/logic?click=5'">${sessionScope.service.getCell(5).sign.getSign()}</td>
     </tr>
     <tr>
-        <td onclick="window.location='/logic?click=6'">${sessionScope.service.getCell(6).getSign()}</td>
-        <td onclick="window.location='/logic?click=7'">${sessionScope.service.getCell(7).getSign()}</td>
-        <td onclick="window.location='/logic?click=8'">${sessionScope.service.getCell(8).getSign()}</td>
+        <td onclick="window.location='/logic?click=6'">${sessionScope.service.getCell(6).sign.getSign()}</td>
+        <td onclick="window.location='/logic?click=7'">${sessionScope.service.getCell(7).sign.getSign()}</td>
+        <td onclick="window.location='/logic?click=8'">${sessionScope.service.getCell(8).sign.getSign()}</td>
     </tr>
 </table>
 <hr>

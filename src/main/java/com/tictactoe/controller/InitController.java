@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-//@WebServlet("/start")
+@WebServlet("/start")
 public class InitController extends HttpServlet {
     private String pathIndex = "/index.jsp";
 
