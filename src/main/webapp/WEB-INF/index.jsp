@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Tic-Tac-Toe</title>
-    <link href="static/main.css" rel="stylesheet">
+    <link href="../static/main.css" rel="stylesheet">
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <script src="<c:url value="/static/jquery-3.6.0.min.js"/>"></script>
 </head>

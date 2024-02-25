@@ -7,7 +7,6 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -15,8 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/logic")
-public class LogicController extends HttpServlet {
-    private final String pathIndex = "/index.jsp";
+public class LogicController extends BaseController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,14 +47,14 @@ public class LogicController extends HttpServlet {
         if(checkDraw(service, currentSession, resp)){
             return;
         }
-        resp.sendRedirect(pathIndex);
+        resp.sendRedirect(super.PATH_INDEX);
     }
 
     private boolean checkDraw(FieldService service, HttpSession currentSession, HttpServletResponse resp) throws IOException {
         if(service.isGameOver()){
             currentSession.setAttribute("draw", true);
             currentSession.setAttribute("service", service);
-            resp.sendRedirect(pathIndex);
+            resp.sendRedirect(super.PATH_INDEX);
             return true;
         }
         return false;
@@ -82,7 +80,7 @@ public class LogicController extends HttpServlet {
             Sign winner = service.whoIsWin();
             currentSession.setAttribute("winner", winner);
             currentSession.setAttribute("service", service);
-            resp.sendRedirect(pathIndex);
+            resp.sendRedirect(super.PATH_INDEX);
             return true;
         }
         return false;
