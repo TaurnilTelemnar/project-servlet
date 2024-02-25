@@ -1,17 +1,20 @@
 package com.tictactoe;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "LogicServlet", value = "/logic")
+@WebServlet("/logic")
 public class LogicServlet extends HttpServlet {
+    String pathIndex = "/index.jsp";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Получаем текущую сессию
@@ -28,7 +31,7 @@ public class LogicServlet extends HttpServlet {
         // Иначе ничего не делаем и отправляем пользователя на ту же страницу без изменений
         // параметров в сессии
         if (Sign.EMPTY != currentSign) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("");
             dispatcher.forward(req, resp);
             return;
         }
@@ -57,10 +60,11 @@ public class LogicServlet extends HttpServlet {
             List<Sign> data = field.getFieldData();
 
             // Обновляем этот список в сессии
+
             currentSession.setAttribute("data", data);
 
             // Шлем редирект
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect(pathIndex);
             return;
         }
 
@@ -71,7 +75,7 @@ public class LogicServlet extends HttpServlet {
         currentSession.setAttribute("data", data);
         currentSession.setAttribute("field", field);
 
-        resp.sendRedirect("/index.jsp");
+        resp.sendRedirect(pathIndex);
     }
 
     private int getSelectedIndex(HttpServletRequest request) {
@@ -105,7 +109,7 @@ public class LogicServlet extends HttpServlet {
             currentSession.setAttribute("data", data);
 
             // Шлем редирект
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect(pathIndex);
             return true;
         }
         return false;
