@@ -21,7 +21,7 @@ public class InitController extends BaseController {
         CellRepository cellRepository = new CellRepository();
         FieldService fieldService = new FieldService(cellRepository);
         currentSession.setAttribute("service", fieldService);
-        ServletContext servletContext = super.getServletContext();
+        ServletContext servletContext = getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(super.PATH_INDEX);
         requestDispatcher.forward(req, resp);
     }

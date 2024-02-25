@@ -20,12 +20,14 @@ public class LogicController extends BaseController {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession currentSession = req.getSession();
         FieldService service = extractService(currentSession);
+        if(isGameStopped(currentSession)){
+            resp.sendRedirect(super.PATH_INDEX);
+            return;
+        }
         int selectedCellID = this.getSelectedCellID(req);
 
         if(!service.isCellEmpty(selectedCellID)){
-            ServletContext servletContext = super.getServletContext();
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("");
-            requestDispatcher.forward(req, resp);
+            resp.sendRedirect(super.PATH_INDEX);
             return;
         }
         Cell selectedCell = service.getCell(selectedCellID);
@@ -50,6 +52,12 @@ public class LogicController extends BaseController {
         resp.sendRedirect(super.PATH_INDEX);
     }
 
+    private boolean isGameStopped(HttpSession currentSession) {
+        Object winObj = currentSession.getAttribute("winner");
+        Object drawObj = currentSession.getAttribute("draw");
+        return drawObj != null || winObj != null;
+    }
+
     private boolean checkDraw(FieldService service, HttpSession currentSession, HttpServletResponse resp) throws IOException {
         if(service.isGameOver()){
             currentSession.setAttribute("draw", true);
@@ -61,7 +69,7 @@ public class LogicController extends BaseController {
     }
 
 
-    private static FieldService extractService(HttpSession currentSession) {
+    private FieldService extractService(HttpSession currentSession) {
         Object service = currentSession.getAttribute("service");
         if(service.getClass() != FieldService.class){
             currentSession.invalidate();
