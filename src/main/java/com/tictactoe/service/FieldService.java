@@ -26,7 +26,6 @@ public class FieldService {
         Cell cell = fieldRepository.getCell(id).orElseThrow();
         return cell.getSign().equals(Sign.EMPTY);
     }
-
     //опеределяет наличие свободных ячеек
     public boolean isGameOver(){
         return getEmptyCellID() == null;
@@ -49,6 +48,10 @@ public class FieldService {
             }
         }
         return null;
+    }
+    //определяет, есть ли победитель
+    public boolean isGameHasWinner(){
+        return whoIsWin() != null;
     }
     //ToDO вычислить зависимость количества допустимых линий от количества ячеек
     private List<Line> getAllLines(){
