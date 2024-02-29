@@ -26,13 +26,10 @@ public class FieldService {
         Cell cell = cellRepository.getCell(id).orElseThrow();
         return cell.getSign().equals(Sign.EMPTY);
     }
-    //опеределяет наличие свободных ячеек
-    public boolean isGameOver(){
-        return getEmptyCellID() == null;
+    public boolean isGameDraw(){
+        return getNoughtNextMove() == null;
     }
-    //возвращает первую пустую ячейку
-    //ToDO заменить на алгоритм минимакса
-    public Integer getEmptyCellID(){
+    public Integer getNoughtNextMove(){
         for(Map.Entry<Integer, Cell> entry: getField().entrySet()){
             if(entry.getValue().getSign().equals(Sign.EMPTY)){
                 return entry.getKey();
@@ -40,7 +37,6 @@ public class FieldService {
         }
         return null;
     }
-    //опеределяет победителя
     public Sign whoIsWin(){
         for (Line line : getAllLines()) {
             if(line.isLineHasWinner()){
@@ -49,7 +45,6 @@ public class FieldService {
         }
         return null;
     }
-    //определяет, есть ли победитель
     public boolean isGameHasWinner(){
         return whoIsWin() != null;
     }

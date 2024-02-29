@@ -37,7 +37,7 @@ public class LogicController extends BaseController {
         if(checkDraw(service, currentSession, resp)){
             return;
         }
-        int emptyCellID = service.getEmptyCellID();
+        int emptyCellID = service.getNoughtNextMove();
         Cell cellForBotMove = new Cell(emptyCellID, Sign.NOUGHT);
         service.updateCell(cellForBotMove, emptyCellID);
         if(checkWin(service, currentSession, resp)){
@@ -56,7 +56,7 @@ public class LogicController extends BaseController {
     }
 
     private boolean checkDraw(FieldService service, HttpSession currentSession, HttpServletResponse resp) throws IOException {
-        if(service.isGameOver()){
+        if(service.isGameDraw()){
             currentSession.setAttribute("draw", true);
             currentSession.setAttribute("service", service);
             resp.sendRedirect(super.PATH_INDEX);
